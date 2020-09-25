@@ -1,4 +1,3 @@
-import java.util.Scanner;
 import java.awt.*;
 import java.awt.event.*;
 /**
