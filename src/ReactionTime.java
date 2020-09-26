@@ -54,18 +54,16 @@ public class ReactionTime {
 					} catch(InterruptedException ex) {
 					    Thread.currentThread().interrupt();
 					}
+					
 					robot.mousePress(InputEvent.BUTTON1_DOWN_MASK);
 					robot.mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
 					trials++;
 				}
-				
 			}
-
 
 		} catch (AWTException e) {
     		e.printStackTrace();
 		}
-	
 	}
 
 }
