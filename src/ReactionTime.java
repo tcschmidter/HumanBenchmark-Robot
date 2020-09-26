@@ -26,7 +26,6 @@ public class ReactionTime {
 				mousePos = MouseInfo.getPointerInfo().getLocation();
 				robot.mouseMove(mousePos.x, mousePos.y + i);
 				currentColor = robot.getPixelColor(mousePos.x, mousePos.y);
-				System.out.println(currentColor);
 				if(currentColor.equals(startColor)) {
 					foundTest = true;
 					//stops loop
@@ -57,15 +56,16 @@ public class ReactionTime {
 					}
 					robot.mousePress(InputEvent.BUTTON1_DOWN_MASK);
 					robot.mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
+					trials++;
 				}
-				trials ++;
+				
 			}
 
 
 		} catch (AWTException e) {
     		e.printStackTrace();
 		}
-			
+	
 	}
 
 }
