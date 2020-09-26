@@ -18,6 +18,7 @@ public class ReactionTime {
 		Color startColor = new Color(43, 135, 209);
 		Color clickColor = new Color(75, 219, 106);
 		Point mousePos = new Point(0, 0);
+
 		try { 
 			robot = new Robot();
 			//moves mouse from the top to the bottom of the screen until it reaches its target
