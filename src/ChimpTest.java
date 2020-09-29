@@ -11,53 +11,32 @@ import java.awt.image.*;
 public class ChimpTest {
 
 	public static void main(String[]args) {
-		Robot robot;
-		try { 
-			robot = new Robot();
-			Rectangle rect = new Rectangle(Toolkit.getDefaultToolkit().getScreenSize());
-			BufferedImage screenCap;
-
-			screenCap = robot.createScreenCapture(rect);
-			scanImage(screenCap);
-
-
-		} catch (AWTException e) {
-    		e.printStackTrace();
+		try {
+			getScreen();
 		}
+		catch(AWTException e) {
+
+		}
+		
 	
 	}
-
-	public static void scanImage(BufferedImage screen) {
-		int pixel = (screen.getRGB(0, 0));
-		int red = (pixel >> 16) & 0xff;
-		int green = (pixel >> 8) & 0xff;
-        int blue = (pixel) & 0xff; 
-        int lastPixel = pixel;
-        int lastRed = red;
-        int lastGreen = green;
-        int lastBlue = blue;
+	//scans image and returns an array of pixels
+	public static String[][] getScreen() throws AWTException {
+		Robot robot = new Robot();
+		Rectangle rect = new Rectangle(Toolkit.getDefaultToolkit().getScreenSize());
+		BufferedImage screen = robot.createScreenCapture(rect);
+		String[][]screenRGB = new String[screen.getWidth()][screen.getHeight()];
 		for (int y = 0; y < screen.getHeight(); y++) {
 		    for (int x = 0; x < screen.getWidth(); x++) {
-		        pixel = screen.getRGB(x, y);
-		        red = (pixel >> 16) & 0xff;
-		        green = (pixel >> 8) & 0xff;
-		        blue = (pixel) & 0xff;
-		        if (red - lastRed > 10 || blue - lastBlue > 10 || green - lastGreen > 10) {
-		        	System.out.println("Color changed from RGB(" + lastRed + ", " + lastGreen + ", " + lastBlue + ") " +
-		        		"to RGB(" + red + ", " + green + ", " + blue + ") at (x,y) = (" + x + ", " + y + ")");     
-		        	lastPixel = pixel;
-			        lastRed = red;
-			        lastGreen = green;
-			        lastBlue = blue;
-		        }
+		        int pixel = screen.getRGB(x, y);
+		        String red = String.format("%03d", pixel >> 16 & 0xff);
+		        String green = String.format("%03d", pixel >> 8 & 0xff);
+		        String blue = String.format("%03d", pixel & 0xff);
+		        screenRGB[x][y] = red + green + blue; 
+	        }
 		                                                                                                                                                     
-		    }
-		    lastPixel = pixel;
-	        lastRed = red;
-	        lastGreen = green;
-	        lastBlue = blue;
-		}
-
+	    }
+		return screenRGB;  
 	}
 
 }
