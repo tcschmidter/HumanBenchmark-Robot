@@ -5,6 +5,9 @@ import java.awt.image.*;
  * ChimpTest
  *
  * Program completes the Are You Smarter Than a Chimpanzee test at https://humanbenchmark.com/tests/chimp
+ * Program completes the Are You Smarter Than a 
+ * Chimpanzee test at https://humanbenchmark.com/tests/chimp
+ *
  * @author Thomas Schmidter
  * @version 2020
  **/
@@ -17,7 +20,6 @@ public class ChimpTest {
 		catch(AWTException e) {
 
 		}
-		
 	
 	}
 	//scans image and returns an array of pixels
