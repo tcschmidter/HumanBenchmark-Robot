@@ -3,11 +3,12 @@ import java.awt.event.*;
 /**
  * ReactionTime
  *
- * Program completes the reaction speed test at https://humanbenchmark.com/tests/reactiontime to give user inputted results
+ * Program completes the reaction speed test 
+ * at https://humanbenchmark.com/tests/reactiontime
  *
- * @author Thomas Schmidter
+ * @author Clayton Schmidter
  * @version 2020
- */
+ **/
 public class ReactionTime {
 
 	public static void main(String[]args) {
@@ -26,13 +27,13 @@ public class ReactionTime {
 				mousePos = MouseInfo.getPointerInfo().getLocation();
 				robot.mouseMove(mousePos.x, mousePos.y + i);
 				currentColor = robot.getPixelColor(mousePos.x, mousePos.y);
-				if(currentColor.equals(startColor)) {
+				if (currentColor.equals(startColor)) {
 					foundTest = true;
 					//stops loop
 					i = (int) Toolkit.getDefaultToolkit().getScreenSize().getHeight();
 				}
 			}
-			if(!foundTest) {
+			if (!foundTest) {
 				System.out.println("Error: Reaction Time Test not found");
 				return;
 			}
@@ -44,26 +45,28 @@ public class ReactionTime {
 			int trials = 0;
 			while (trials < 5) {
 				currentColor = robot.getPixelColor(mousePos.x, mousePos.y);
-				if(currentColor.equals(clickColor)) {
+				if (currentColor.equals(clickColor)) {
 					robot.mousePress(InputEvent.BUTTON1_DOWN_MASK);
 					robot.mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
 					
 					//waits one second to show the user the reaction time then continues to the next trial
 					try {
 					    Thread.sleep(1000);
-					} catch(InterruptedException ex) {
+					} catch (InterruptedException ex) {
 					    Thread.currentThread().interrupt();
 					}
-					
 					robot.mousePress(InputEvent.BUTTON1_DOWN_MASK);
 					robot.mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
 					trials++;
 				}
+				
 			}
+
 
 		} catch (AWTException e) {
     		e.printStackTrace();
 		}
+	
 	}
 
 }
